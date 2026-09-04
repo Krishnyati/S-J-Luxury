@@ -1,0 +1,297 @@
+/* ================= DASHBOARD PAGE ================= */
+
+.dashboard-page {
+    min-height: 100vh;
+    padding: 60px;
+    background: #f8f6f1;
+    color: #181818;
+}
+
+
+/* ================= HEADER ================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.dashboard-label {
+    color: #a77b2b;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0 0 10px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 10px;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.dashboard-subtitle {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* ================= LOGOUT ================= */
+
+.dashboard-logout {
+    padding: 12px 25px;
+    border: none;
+    background: #181818;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.dashboard-logout:hover {
+    background: #a77b2b;
+}
+
+
+/* ================= DASHBOARD GRID ================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+
+/* ================= DASHBOARD CARD ================= */
+
+.dashboard-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    background: white;
+
+    border: 1px solid #eee;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.10);
+
+    border-color: #a77b2b;
+}
+
+
+/* ================= ICON ================= */
+
+.dashboard-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f8f6f1;
+
+    font-size: 25px;
+}
+
+
+/* ================= CARD CONTENT ================= */
+
+.dashboard-card h2 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    font-weight: 400;
+}
+
+.dashboard-card p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= ARROW ================= */
+
+.dashboard-arrow {
+    position: absolute;
+
+    right: 25px;
+
+    font-size: 24px;
+
+    color: #a77b2b;
+
+    transition: 0.3s;
+}
+
+.dashboard-card:hover .dashboard-arrow {
+    transform: translateX(6px);
+}
+
+
+/* ================= SHOPPING SECTION ================= */
+
+.dashboard-shopping {
+    margin-top: 50px;
+
+    padding: 45px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #181818;
+
+    color: white;
+}
+
+.dashboard-shopping p {
+    margin: 0 0 10px;
+
+    color: #a77b2b;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.dashboard-shopping h2 {
+    margin: 0 0 10px;
+
+    font-size: 28px;
+
+    font-weight: 400;
+}
+
+.dashboard-shopping span {
+    color: #bbb;
+
+    font-size: 14px;
+}
+
+
+/* ================= SHOP BUTTON ================= */
+
+.dashboard-shopping button {
+    padding: 14px 28px;
+
+    border: 1px solid #a77b2b;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.dashboard-shopping button:hover {
+    background: #a77b2b;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-page {
+        padding: 40px 25px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-shopping {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-page {
+        padding: 30px 18px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-card {
+        padding: 22px;
+
+        gap: 15px;
+    }
+
+    .dashboard-icon {
+        width: 50px;
+        height: 50px;
+
+        font-size: 21px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 18px;
+    }
+
+    .dashboard-card p {
+        font-size: 13px;
+
+        padding-right: 20px;
+    }
+
+    .dashboard-shopping {
+        padding: 30px 25px;
+    }
+
+    .dashboard-shopping h2 {
+        font-size: 23px;
+    }
+}

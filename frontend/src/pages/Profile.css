@@ -1,0 +1,249 @@
+/* ================================
+PROFILE PAGE
+================================ */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 80px 7%;
+    background: #f8f6f1;
+    color: #1b1b1b;
+    box-sizing: border-box;
+}
+
+
+/* ================================
+PROFILE HEADER
+================================ */
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.profile-header p {
+    margin: 0 0 10px;
+    color: #b08a45;
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+.profile-header h1 {
+    margin: 0 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.profile-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ================================
+PROFILE CARD
+================================ */
+
+.profile-card {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 45px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e4dfd4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ================================
+PROFILE AVATAR
+================================ */
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 35px;
+    border: 1px solid #d8d2c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f6f1;
+    font-size: 35px;
+}
+
+
+/* ================================
+PROFILE INFORMATION
+================================ */
+
+.profile-information {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ================================
+PROFILE FIELD
+================================ */
+
+.profile-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e0d7;
+}
+
+.profile-field span {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.profile-field strong {
+    color: #222;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: right;
+    word-break: break-word;
+}
+
+
+/* ================================
+PROFILE ACTIONS
+================================ */
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.profile-actions a {
+    display: inline-block;
+    padding: 14px 22px;
+    border: 1px solid #222;
+    color: white;
+    background: #171717;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.profile-actions a:hover {
+    background: #b08a45;
+    border-color: #b08a45;
+    color: white;
+}
+
+
+/* ================================
+LOADING PROFILE
+================================ */
+
+.loading-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/* ================================
+EMPTY PROFILE
+================================ */
+
+.empty-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.empty-profile .profile-label {
+    color: #b08a45;
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+.empty-profile h1 {
+    margin: 10px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.empty-profile p:not(.profile-label) {
+    margin-bottom: 30px;
+    color: #777;
+}
+
+.empty-profile a {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #171717;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.empty-profile a:hover {
+    background: #b08a45;
+}
+
+
+/* ================================
+MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        padding: 50px 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 34px;
+    }
+
+    .profile-card {
+        padding: 30px 20px;
+    }
+
+    .profile-avatar {
+        width: 75px;
+        height: 75px;
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .profile-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .profile-field strong {
+        text-align: left;
+    }
+
+    .profile-actions a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .empty-profile h1 {
+        font-size: 34px;
+    }
+}

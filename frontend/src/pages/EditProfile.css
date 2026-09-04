@@ -1,0 +1,270 @@
+/* ================================
+   EDIT PROFILE PAGE
+================================ */
+
+.edit-profile-page {
+    min-height: 100vh;
+
+    padding: 130px 6% 80px;
+
+    background: #f8f6f1;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.edit-profile-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.edit-profile-header p {
+    color: #a77b2b;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.edit-profile-header h1 {
+    margin: 0 0 12px;
+
+    color: #181818;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 44px;
+
+    font-weight: 400;
+}
+
+.edit-profile-header span {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   PROFILE CARD
+================================ */
+
+.edit-profile-card {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 40px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ================================
+   PROFILE AVATAR
+================================ */
+
+.edit-profile-avatar {
+    width: 85px;
+
+    height: 85px;
+
+    margin: 0 auto 35px;
+
+    border: 1px solid #ddd2c2;
+
+    border-radius: 50%;
+
+    background: #f8f6f1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 34px;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.edit-profile-form {
+    width: 100%;
+}
+
+
+/* ================================
+   FIELD
+================================ */
+
+.edit-profile-field {
+    margin-bottom: 25px;
+}
+
+.edit-profile-field label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.edit-profile-field input {
+    width: 100%;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd2c2;
+
+    background: white;
+
+    color: #181818;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.edit-profile-field input:focus {
+    border-color: #a77b2b;
+
+    box-shadow:
+        0 0 0 2px rgba(167, 123, 43, 0.08);
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+.edit-profile-message {
+    margin: 15px 0;
+
+    color: #a77b2b;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
+/* ================================
+   ACTIONS
+================================ */
+
+.edit-profile-actions {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.edit-profile-actions button {
+    flex: 1;
+
+    padding: 15px;
+
+    border: none;
+
+    background: #181818;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.edit-profile-actions button:hover {
+    background: #a77b2b;
+}
+
+.edit-profile-actions button:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+.edit-profile-actions a {
+    flex: 1;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #181818;
+
+    background: white;
+
+    color: #181818;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.edit-profile-actions a:hover {
+    background: #181818;
+
+    color: white;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .edit-profile-page {
+        padding: 110px 20px 50px;
+    }
+
+
+    .edit-profile-header h1 {
+        font-size: 34px;
+    }
+
+
+    .edit-profile-card {
+        padding: 28px 20px;
+    }
+
+
+    .edit-profile-actions {
+        flex-direction: column;
+    }
+
+}

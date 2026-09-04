@@ -1,0 +1,51 @@
+.verify-email-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.verify-email-box {
+    width: 100%;
+    max-width: 450px;
+    padding: 45px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.verify-email-box h1 {
+    margin-bottom: 10px;
+}
+
+.verify-email-box p {
+    margin-bottom: 20px;
+}
+
+.verification-email {
+    font-weight: 600;
+}
+
+.verify-email-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.verify-email-box input {
+    padding: 14px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+.verify-email-box button {
+    padding: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.verify-message {
+    margin-top: 20px;
+}

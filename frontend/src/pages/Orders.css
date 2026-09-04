@@ -1,0 +1,325 @@
+/* ================================
+   ORDERS PAGE
+================================ */
+
+.orders-page {
+    min-height: 100vh;
+    padding: 70px 7%;
+    background: #f8f6f1;
+    color: #1b1b1b;
+}
+
+
+/* ================================
+   ORDERS HEADER
+================================ */
+
+.orders-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.orders-header p,
+.orders-label {
+    margin: 0 0 10px;
+    color: #b08a45;
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+.orders-header h1 {
+    margin: 0 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.orders-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ================================
+   ORDERS LIST
+================================ */
+
+.orders-list {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+/* ================================
+   ORDER CARD
+================================ */
+
+.order-card {
+    background: #ffffff;
+    border: 1px solid #e4dfd4;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ================================
+   ORDER HEADER
+================================ */
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e0d7;
+}
+
+.order-card-header p {
+    margin: 0 0 6px;
+    color: #b08a45;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.order-card-header strong {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ================================
+   ORDER STATUS
+================================ */
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #e5e0d7;
+    font-size: 14px;
+}
+
+.order-status span {
+    color: #666;
+}
+
+.order-status strong {
+    color: #b08a45;
+    font-weight: 600;
+}
+
+
+/* ================================
+   ORDER PRODUCTS
+================================ */
+
+.order-products {
+    padding: 25px 0;
+}
+
+.order-products h2 {
+    margin: 0 0 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.order-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeae3;
+}
+
+.order-product h3 {
+    margin: 0 0 6px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.order-product p {
+    margin: 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.order-product strong {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+
+/* ================================
+   ORDER TOTAL
+================================ */
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    border-top: 1px solid #dcd6cc;
+    border-bottom: 1px solid #e5e0d7;
+}
+
+.order-total span {
+    font-size: 15px;
+    color: #555;
+}
+
+.order-total strong {
+    color: #b08a45;
+    font-size: 20px;
+}
+
+
+/* ================================
+   PAYMENT STATUS
+================================ */
+
+.payment-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #e5e0d7;
+    font-size: 14px;
+}
+
+.payment-status span {
+    color: #666;
+}
+
+.payment-status strong {
+    color: #b08a45;
+    font-weight: 600;
+}
+
+
+/* ================================
+   SHIPPING INFORMATION
+================================ */
+
+.shipping-information {
+    padding-top: 25px;
+}
+
+.shipping-information h2 {
+    margin: 0 0 15px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.shipping-information p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+
+/* ================================
+   CONTINUE SHOPPING
+================================ */
+
+.orders-shopping {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.orders-shopping a,
+.empty-orders a {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #171717;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.orders-shopping a:hover,
+.empty-orders a:hover {
+    background: #b08a45;
+}
+
+
+/* ================================
+   EMPTY ORDERS
+================================ */
+
+.empty-orders {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.empty-orders h1 {
+    margin: 0 0 15px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.empty-orders p {
+    margin: 0 0 30px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .orders-page {
+        padding: 45px 20px;
+    }
+
+    .orders-header h1 {
+        font-size: 32px;
+    }
+
+    .order-card {
+        padding: 20px;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .order-product {
+        align-items: flex-start;
+    }
+
+    .order-product strong {
+        font-size: 14px;
+    }
+
+    .order-total {
+        font-size: 14px;
+    }
+
+    .order-total strong {
+        font-size: 17px;
+    }
+
+    .empty-orders h1 {
+        font-size: 32px;
+    }
+}

@@ -1,0 +1,250 @@
+/* CHECKOUT PAGE */
+
+.checkout-page {
+    min-height: 100vh;
+    padding: 60px 7%;
+    background: #f8f6f1;
+    color: #1b1b1b;
+}
+
+
+/* CHECKOUT HEADER */
+
+.checkout-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.checkout-header p {
+    color: #b08a45;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.checkout-header h1 {
+    margin: 0 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.checkout-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* CHECKOUT CONTAINER */
+
+.checkout-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+}
+
+
+/* CUSTOMER FORM */
+
+.checkout-form {
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e4dfd4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-form h2 {
+    margin: 0 0 30px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+
+/* FORM INPUTS */
+
+.checkout-form input,
+.checkout-form textarea {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 14px;
+    border: 1px solid #d8d2c7;
+    background: #ffffff;
+    color: #222;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.checkout-form textarea {
+    resize: vertical;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+    border-color: #b08a45;
+}
+
+
+/* ORDER SUMMARY */
+
+.checkout-summary {
+    height: fit-content;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e4dfd4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.checkout-summary > p {
+    margin: 0 0 8px;
+    color: #b08a45;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.checkout-summary h2 {
+    margin: 0 0 25px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+/* CHECKOUT ITEMS */
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e0d7;
+    font-size: 13px;
+}
+
+.checkout-item span {
+    color: #555;
+}
+
+.checkout-item strong {
+    color: #222;
+    white-space: nowrap;
+}
+
+
+/* CHECKOUT TOTAL */
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    font-size: 18px;
+}
+
+.checkout-total strong {
+    color: #b08a45;
+}
+
+
+/* PLACE ORDER */
+
+.place-order-button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    background: #171717;
+    color: white;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.place-order-button:hover {
+    background: #b08a45;
+}
+
+
+/* BACK TO CART */
+
+.back-to-cart {
+    display: block;
+    margin-top: 18px;
+    color: #555;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.back-to-cart:hover {
+    color: #b08a45;
+}
+
+
+/* EMPTY CHECKOUT */
+
+.empty-checkout {
+    text-align: center;
+}
+
+.empty-checkout h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.empty-checkout p {
+    margin-bottom: 30px;
+    color: #777;
+}
+
+.empty-checkout a {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #171717;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .checkout-page {
+        padding: 40px 20px;
+    }
+
+    .checkout-header h1 {
+        font-size: 32px;
+    }
+
+    .checkout-form,
+    .checkout-summary {
+        padding: 25px 20px;
+    }
+
+    .checkout-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .checkout-item strong {
+        align-self: flex-start;
+    }
+}

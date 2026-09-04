@@ -1,0 +1,594 @@
+/* =====================================================
+   S&J LUXURY - FAVORITES PAGE
+===================================================== */
+
+.favorites-page {
+    min-height: 100vh;
+    padding: 70px 80px;
+    background: #f8f6f1;
+    color: #181818;
+}
+
+
+/* =====================================================
+   FAVORITES HEADER
+===================================================== */
+
+.favorites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.favorites-label {
+    margin: 0 0 12px;
+    color: #a77b2b;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.favorites-header h1 {
+    margin: 0 0 10px;
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.favorites-header > div > p:last-child {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   CLEAR FAVORITES BUTTON
+===================================================== */
+
+.clear-favorites-button {
+    padding: 13px 25px;
+    border: none;
+    background: #181818;
+    color: white;
+    cursor: pointer;
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.clear-favorites-button:hover {
+    background: #a77b2b;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.favorites-message {
+    margin: 20px 0;
+    padding: 13px 18px;
+
+    background: white;
+
+    color: #a77b2b;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FAVORITES GRID
+===================================================== */
+
+.favorites-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+
+/* =====================================================
+   FAVORITE CARD
+===================================================== */
+
+.favorite-card {
+    overflow: hidden;
+
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition: 0.4s;
+}
+
+.favorite-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.14);
+}
+
+
+/* =====================================================
+   PRODUCT IMAGE
+===================================================== */
+
+.favorite-image {
+    height: 350px;
+
+    overflow: hidden;
+
+    background: #f3f0e8;
+}
+
+.favorite-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: 0.4s;
+}
+
+.favorite-card:hover .favorite-image img {
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   PRODUCT INFORMATION
+===================================================== */
+
+.favorite-info {
+    padding: 25px;
+}
+
+.favorite-category {
+    margin: 0 0 10px;
+
+    color: #a77b2b;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.favorite-name {
+    color: #181818;
+
+    text-decoration: none;
+}
+
+.favorite-name h3 {
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    line-height: 1.4;
+}
+
+.favorite-name:hover {
+    color: #a77b2b;
+}
+
+
+/* =====================================================
+   PRODUCT PRICE
+===================================================== */
+
+.favorite-price {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 18px 0;
+}
+
+.favorite-price span {
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.favorite-price del {
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   FAVORITE ACTIONS
+===================================================== */
+
+.favorite-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.view-product-button,
+.remove-favorite-button {
+    flex: 1;
+
+    padding: 12px 10px;
+
+    text-align: center;
+
+    border: none;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+
+/* =====================================================
+   VIEW PRODUCT BUTTON
+===================================================== */
+
+.view-product-button {
+    background: #181818;
+
+    color: white;
+}
+
+.view-product-button:hover {
+    background: #a77b2b;
+}
+
+
+/* =====================================================
+   REMOVE FAVORITE BUTTON
+===================================================== */
+
+.remove-favorite-button {
+    background: #eeeeee;
+
+    color: #181818;
+}
+
+.remove-favorite-button:hover {
+    background: #181818;
+
+    color: white;
+}
+
+
+/* =====================================================
+   EMPTY FAVORITES
+===================================================== */
+
+.empty-favorites {
+    min-height: 55vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.empty-heart {
+    margin-bottom: 20px;
+
+    font-size: 65px;
+
+    line-height: 1;
+
+    color: #181818;
+}
+
+.empty-favorites h2 {
+    margin: 0 0 10px;
+
+    color: #181818;
+
+    font-size: 28px;
+
+    font-weight: 400;
+}
+
+.empty-favorites p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   EXPLORE COLLECTION BUTTON
+===================================================== */
+
+.shop-favorites-button {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 14px 30px;
+
+    background: #181818;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.shop-favorites-button:hover {
+    background: #a77b2b;
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.empty-favorites .shop-favorites-button {
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   LOADING PAGE
+===================================================== */
+
+.loading-page {
+    min-height: 70vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.loading-page h2 {
+    color: #a77b2b;
+
+    font-size: 24px;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .favorites-page {
+        padding: 60px 40px;
+    }
+
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE - MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .favorites-page {
+        padding: 40px 20px;
+    }
+
+    .favorites-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .favorites-header h1 {
+        font-size: 36px;
+    }
+
+    .clear-favorites-button {
+        width: 100%;
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .favorite-image {
+        height: 320px;
+    }
+
+    .favorite-actions {
+        flex-direction: column;
+    }
+
+    .view-product-button,
+    .remove-favorite-button {
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .favorites-page {
+        padding: 30px 15px;
+    }
+
+    .favorites-header h1 {
+        font-size: 30px;
+    }
+
+    .favorite-info {
+        padding: 20px;
+    }
+
+    .favorite-image {
+        height: 280px;
+    }
+
+    .empty-heart {
+        font-size: 55px;
+    }
+
+    .empty-favorites h2 {
+        font-size: 23px;
+    }
+}
+
+/* =====================================================
+   CONTINUE SHOPPING
+===================================================== */
+
+.favorites-shop-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.shop-favorites-button {
+    display: inline-block;
+
+    padding: 14px 32px;
+
+    background: #181818;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.shop-favorites-button:hover {
+    background: #a77b2b;
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.favorites-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+/* =====================================================
+   CONTINUE SHOPPING
+===================================================== */
+
+.continue-shopping-button {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #181818;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.continue-shopping-button:hover {
+    background: #a77b2b;
+}
+
+
+/* =====================================================
+   CLEAR FAVORITES
+===================================================== */
+
+.clear-favorites-button {
+    padding: 12px 22px;
+
+    border: none;
+
+    background: #181818;
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.clear-favorites-button:hover {
+    background: #a77b2b;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .favorites-header-actions {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .continue-shopping-button,
+    .clear-favorites-button {
+        width: 100%;
+
+        text-align: center;
+    }
+}
