@@ -4,21 +4,27 @@
 
 .header {
     position: fixed;
+
     top: 0;
     left: 0;
+
     z-index: 1000;
 
     width: 100%;
     height: 80px;
+
     padding: 0 7%;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     box-sizing: border-box;
 
     border-bottom: 1px solid #eeeeee;
+
     background: #ffffff;
 
     transition:
@@ -35,15 +41,18 @@
 .header.header-scrolled {
     background: rgba(255, 255, 255, 0.08);
 
-    border-bottom-color: rgba(255, 255, 255, 0.22);
+    border-bottom-color:
+        rgba(255, 255, 255, 0.22);
 
     backdrop-filter: blur(10px);
+
     -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
         0 8px 24px rgba(0, 0, 0, 0.10),
         0 1px 0 rgba(255, 255, 255, 0.22);
 }
+
 
 .header.header-scrolled .menu-button,
 .header.header-scrolled .brand span,
@@ -54,8 +63,77 @@
         0 2px 8px rgba(0, 0, 0, 0.55);
 }
 
-.header.header-scrolled .menu-lines span {
-    background: #ffffff;
+
+/* ================================
+   CART NOTIFICATION
+================================ */
+
+.header-cart-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.cart-notification {
+    position: absolute;
+
+    top: -8px;
+    right: -5px;
+
+    min-width: 18px;
+    height: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 2px 5px;
+
+    border-radius: 50%;
+
+    background: #a77b2b;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    z-index: 5;
+
+    animation:
+        cartNotificationShow 0.2s ease;
+}
+
+
+/* ================================
+   CART NOTIFICATION ANIMATION
+================================ */
+
+@keyframes cartNotificationShow {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(5px)
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
 }
 
 
@@ -65,21 +143,30 @@
 
 .menu-button {
     min-width: 130px;
+
     padding: 8px 0;
 
     display: flex;
+
     align-items: center;
+
     gap: 14px;
 
     border: none;
+
     background: transparent;
+
     color: #222222;
 
     cursor: pointer;
+
     font-size: 17px;
+
     font-weight: 600;
+
     letter-spacing: 2px;
 }
+
 
 .menu-button:hover {
     color: #a77b2b;
@@ -92,17 +179,26 @@
 
 .menu-lines {
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
 }
+
 
 .menu-lines span {
     display: block;
 
     width: 27px;
+
     height: 2px;
 
     background: #222222;
+}
+
+
+.header.header-scrolled .menu-lines span {
+    background: #ffffff;
 }
 
 
@@ -112,17 +208,22 @@
 
 .header .brand {
     position: absolute;
+
     left: 50%;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 12px;
 
     cursor: pointer;
 
     transform: translateX(-50%);
 }
+
 
 .header .brand img {
     width: 42px !important;
@@ -135,14 +236,20 @@
     max-height: 42px !important;
 
     display: block;
+
     object-fit: cover;
+
     border-radius: 50%;
 }
 
+
 .brand span {
     color: #181818;
+
     font-size: 20px;
+
     letter-spacing: 4px;
+
     white-space: nowrap;
 }
 
@@ -155,8 +262,11 @@
     min-width: 130px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: flex-end;
+
     gap: 12px;
 }
 
@@ -167,25 +277,65 @@
 
 .header-icon-button {
     width: 38px;
+
     height: 38px;
+
     padding: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border: none;
+
     background: transparent;
+
     color: #222222;
 
     cursor: pointer;
+
     font-size: 22px;
 
-    transition: 0.3s;
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
 }
+
+
+/* ================================
+   SVG ICONS
+================================ */
+
+/*
+   IMPORTANT:
+   fill: none prevents SVG icons
+   from becoming solid black.
+*/
+
+.header-icon-button svg {
+    width: 22px;
+
+    height: 22px;
+
+    fill: none !important;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    display: block;
+}
+
 
 .header-icon-button:hover {
     color: #a77b2b;
+
     transform: scale(1.05);
 }
 
@@ -198,76 +348,145 @@
     padding: 0;
 
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 
     border: none;
+
     background: transparent;
 
     cursor: pointer;
 }
 
-/* Profile icon in its own round frame */
+
+/* ================================
+   PROFILE ICON FRAME
+================================ */
 
 .header-user-button .header-icon-button {
     width: 38px;
+
     height: 38px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border: 1px solid #c39a50;
+
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.85);
+    background:
+        rgba(255, 255, 255, 0.85);
+
     color: #181818;
 
     font-size: 18px;
+
     text-shadow: none;
 
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease;
 }
 
-/* Username in its own rectangular frame */
+
+/* Make profile SVG slightly smaller */
+
+.header-user-button
+.header-icon-button svg {
+    width: 20px;
+
+    height: 20px;
+
+    fill: none !important;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* ================================
+   USER NAME
+================================ */
 
 .header-user-name {
     min-width: 88px;
+
     max-width: 135px;
+
     padding: 10px 13px;
 
     overflow: hidden;
 
     border: 1px solid #c39a50;
+
     border-radius: 3px;
 
-    background: rgba(255, 255, 255, 0.85);
+    background:
+        rgba(255, 255, 255, 0.85);
+
     color: #181818;
 
     font-size: 12px;
+
     font-weight: 600;
+
     letter-spacing: 0.5px;
+
     text-align: center;
+
     text-overflow: ellipsis;
+
     text-shadow: none;
+
     white-space: nowrap;
 
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease;
 }
 
-.header-user-button:hover .header-icon-button,
-.header-user-button:hover .header-user-name {
+
+/* ================================
+   USER HOVER
+================================ */
+
+.header-user-button:hover
+.header-icon-button,
+
+.header-user-button:hover
+.header-user-name {
     border-color: #181818;
+
     background: #181818;
+
     color: #ffffff;
 }
 
-/* User frames remain clear on transparent header */
 
-.header.header-scrolled .header-user-button .header-icon-button,
-.header.header-scrolled .header-user-name {
-    background: rgba(255, 255, 255, 0.92);
+/* ================================
+   SCROLLED USER
+================================ */
+
+.header.header-scrolled
+.header-user-button
+.header-icon-button,
+
+.header.header-scrolled
+.header-user-name {
+    background:
+        rgba(255, 255, 255, 0.92);
+
     color: #181818;
+
     text-shadow: none;
 }
 
@@ -278,14 +497,18 @@
 
 .menu-overlay {
     position: fixed;
+
     top: 0;
     left: 0;
+
     z-index: 2000;
 
     width: 100%;
+
     height: 100vh;
 
-    background: rgba(0, 0, 0, 0.35);
+    background:
+        rgba(0, 0, 0, 0.35);
 }
 
 
@@ -295,15 +518,19 @@
 
 .menu-panel {
     width: 430px;
+
     max-width: 88%;
+
     height: 100vh;
 
     overflow-y: auto;
 
     box-sizing: border-box;
+
     background: #ffffff;
 
-    animation: menuSlideIn 0.25s ease;
+    animation:
+        menuSlideIn 0.25s ease;
 }
 
 
@@ -312,13 +539,17 @@
 ================================ */
 
 @keyframes menuSlideIn {
+
     from {
-        transform: translateX(-100%);
+        transform:
+            translateX(-100%);
     }
 
     to {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
+
 }
 
 
@@ -328,19 +559,27 @@
 
 .menu-header {
     height: 80px;
+
     padding: 0 22px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     box-sizing: border-box;
-    border-bottom: 1px solid #eeeeee;
+
+    border-bottom:
+        1px solid #eeeeee;
 }
+
 
 .menu-header span {
     font-size: 15px;
+
     font-weight: 600;
+
     letter-spacing: 3px;
 }
 
@@ -351,12 +590,17 @@
 
 .menu-close {
     border: none;
+
     background: transparent;
+
     color: #222222;
 
     cursor: pointer;
+
     font-size: 38px;
+
     font-weight: 300;
+
     line-height: 1;
 }
 
@@ -376,36 +620,88 @@
 
 .menu-item {
     width: 100%;
+
     min-height: 62px;
+
     padding: 0 22px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     border: none;
-    border-bottom: 1px solid #eeeeee;
+
+    border-bottom:
+        1px solid #eeeeee;
 
     background: #ffffff;
+
     color: #222222;
 
     cursor: pointer;
+
     font-size: 14px;
+
     font-weight: 600;
+
     letter-spacing: 1.5px;
+
     text-align: left;
 
-    transition: 0.2s;
+    transition:
+        0.2s;
 }
+
 
 .menu-item:hover {
     background: #f8f6f1;
+
     color: #a77b2b;
 }
 
+
 .menu-item span:last-child {
     font-size: 25px;
+
     font-weight: 300;
+}
+
+
+/* ================================
+   MENU ICON
+================================ */
+
+.menu-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 24px;
+
+    height: 24px;
+}
+
+
+.menu-icon svg {
+    width: 20px;
+
+    height: 20px;
+
+    fill: none !important;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    display: block;
 }
 
 
@@ -414,11 +710,17 @@
 ================================ */
 
 .menu-section-title {
-    padding: 30px 22px 12px;
+    padding:
+        30px
+        22px
+        12px;
 
     color: #777777;
+
     font-size: 12px;
+
     font-weight: 500;
+
     letter-spacing: 2px;
 }
 
@@ -429,8 +731,11 @@
 
 .menu-space {
     height: 25px;
+
     margin-bottom: 10px;
-    border-bottom: 1px solid #eeeeee;
+
+    border-bottom:
+        1px solid #eeeeee;
 }
 
 
@@ -439,26 +744,35 @@
 ================================ */
 
 @media (max-width: 900px) {
+
     .header {
         height: 75px;
+
         padding: 0 25px;
     }
 
+
     .brand span {
         font-size: 18px;
+
         letter-spacing: 3px;
     }
 
+
     .brand img {
         width: 40px !important;
+
         height: 40px !important;
 
         min-width: 40px !important;
+
         min-height: 40px !important;
 
         max-width: 40px !important;
+
         max-height: 40px !important;
     }
+
 }
 
 
@@ -467,53 +781,98 @@
 ================================ */
 
 @media (max-width: 600px) {
+
     .header {
         height: 70px;
+
         padding: 0 18px;
     }
 
+
     .menu-button {
         min-width: auto;
+
         gap: 10px;
+
         font-size: 15px;
     }
+
 
     .menu-lines span {
         width: 24px;
     }
 
+
     .header .brand img {
         width: 35px !important;
+
         height: 35px !important;
 
         min-width: 35px !important;
+
         min-height: 35px !important;
 
         max-width: 35px !important;
+
         max-height: 35px !important;
     }
 
+
     .brand span {
         font-size: 15px;
+
         letter-spacing: 2px;
     }
 
+
     .header-icons {
         min-width: auto;
+
         gap: 3px;
     }
 
+
     .header-icon-button {
         width: 32px;
+
         height: 32px;
+
         font-size: 19px;
     }
 
-    .header-user-button .header-icon-button {
+
+    .header-icon-button svg {
+        width: 20px;
+
+        height: 20px;
+
+        fill: none !important;
+
+        stroke-width: 1.8;
+    }
+
+
+    .header-user-button
+    .header-icon-button {
         width: 32px;
+
         height: 32px;
+
         font-size: 16px;
     }
+
+
+    .header-user-button
+    .header-icon-button svg {
+        width: 18px;
+
+        height: 18px;
+
+        fill: none !important;
+
+        stroke-width: 1.8;
+    }
+
 
     /* On mobile show only the icon frame */
 
@@ -521,16 +880,22 @@
         display: none;
     }
 
+
     .menu-panel {
         width: 88%;
+
         max-width: 430px;
     }
 
+
     .menu-item {
         min-height: 58px;
+
         padding: 0 20px;
+
         font-size: 13px;
     }
+
 }
 
 
@@ -539,24 +904,31 @@
 ================================ */
 
 @media (max-width: 400px) {
+
     .brand span {
         display: none;
     }
+
 
     .menu-button {
         font-size: 14px;
     }
 
+
     .menu-panel {
         width: 92%;
     }
 
+
     .menu-item {
         padding: 0 18px;
+
         font-size: 12px;
     }
+
 
     .menu-header {
         padding: 0 18px;
     }
+
 }

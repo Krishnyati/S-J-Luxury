@@ -47,6 +47,11 @@ import Profile from "./pages/Profile";
 // Import Edit Profile page
 import EditProfile from "./pages/EditProfile";
 
+// Import Cart page
+import Cart from "./pages/Cart";
+
+// Import Favorites page
+import Favorites from "./pages/Favorites";
 
 // ================= HOME PAGE =================
 
@@ -598,6 +603,16 @@ function App() {
                     element={<EditProfile />}
                 />
 
+                <Route
+                    path="/cart"
+                    element={<Cart />}
+                />
+                
+                <Route
+                    path="/favorites" 
+                    element={<Favorites />}
+                />
+                
             </Routes>
 
         </BrowserRouter>

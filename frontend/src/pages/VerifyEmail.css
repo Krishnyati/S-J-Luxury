@@ -1,51 +1,388 @@
+/* =====================================================
+   VERIFY EMAIL PAGE
+===================================================== */
+
 .verify-email-page {
     min-height: 100vh;
+
     display: flex;
-    justify-content: center;
+
     align-items: center;
-    padding: 30px;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+
+    background: #E8DFD0;
+
+    color: #181818;
 }
+
+
+/* =====================================================
+   VERIFY EMAIL BOX
+===================================================== */
 
 .verify-email-box {
     width: 100%;
-    max-width: 450px;
-    padding: 45px;
+
+    max-width: 500px;
+
+    padding: 55px 50px;
+
+    box-sizing: border-box;
+
     text-align: center;
-    background: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    background: #EEE5D5;
+
+    border: 1px solid #e4dfd5;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.08);
 }
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.auth-logo {
+    width: 100px;
+
+    height: 100px;
+
+    display: block;
+
+    margin: 0 auto 30px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 8px solid #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
 
 .verify-email-box h1 {
-    margin-bottom: 10px;
+    margin: 0 0 18px;
+
+    color: #181818;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 40px;
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
 }
 
-.verify-email-box p {
-    margin-bottom: 20px;
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.verify-email-box > p {
+    margin: 0 auto 15px;
+
+    max-width: 380px;
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.7;
 }
 
-.verification-email {
+
+/* =====================================================
+   VERIFICATION EMAIL
+===================================================== */
+
+.verify-email-box .verification-email {
+    margin: 5px auto 30px;
+
+    color: #b08a45;
+
+    font-size: 14px;
+
     font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+    word-break: break-word;
 }
+
+
+/* =====================================================
+   FORM
+===================================================== */
 
 .verify-email-box form {
+    width: 100%;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 15px;
 }
 
+
+/* =====================================================
+   OTP INPUT
+===================================================== */
+
 .verify-email-box input {
-    padding: 14px;
-    font-size: 16px;
+    width: 100%;
+
+    height: 58px;
+
+    box-sizing: border-box;
+
+    padding: 0 20px;
+
+    border: 1px solid #cfc9be;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #181818;
+
+    font-size: 18px;
+
     text-align: center;
+
+    letter-spacing: 5px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* OTP PLACEHOLDER */
+
+.verify-email-box input::placeholder {
+    color: #888;
+
+    font-size: 14px;
+
     letter-spacing: 3px;
 }
 
-.verify-email-box button {
-    padding: 14px;
-    border: none;
-    cursor: pointer;
+
+/* OTP FOCUS */
+
+.verify-email-box input:focus {
+    border-color: #b08a45;
+
+    box-shadow:
+        0 0 0 2px rgba(176, 138, 69, 0.12);
 }
 
+
+/* =====================================================
+   VERIFY BUTTON
+===================================================== */
+
+.verify-email-box button {
+    width: 100%;
+
+    height: 58px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    background: #181818;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+/* BUTTON HOVER */
+
+.verify-email-box button:hover {
+    background: #b08a45;
+}
+
+
+/* BUTTON CLICK */
+
+.verify-email-box button:active {
+    transform: scale(0.99);
+}
+
+
+/* =====================================================
+   VERIFICATION MESSAGE
+===================================================== */
+
 .verify-message {
-    margin-top: 20px;
+    margin: 25px 0 0;
+
+    padding: 14px 16px;
+
+    border: 1px solid #e4dfd5;
+
+    background: #f8f6f1;
+
+    color: #b08a45;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .verify-email-page {
+        min-height: 100vh;
+
+        padding: 25px 18px;
+    }
+
+
+    .verify-email-box {
+        max-width: 100%;
+
+        padding: 40px 25px;
+    }
+
+
+    .auth-logo {
+        width: 85px;
+
+        height: 85px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .verify-email-box h1 {
+        font-size: 32px;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    .verify-email-box > p {
+        font-size: 14px;
+    }
+
+
+    .verify-email-box input {
+        height: 54px;
+
+        font-size: 17px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .verify-email-box button {
+        height: 54px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .verify-email-page {
+        padding: 20px 15px;
+    }
+
+
+    .verify-email-box {
+        padding: 35px 20px;
+    }
+
+
+    .auth-logo {
+        width: 75px;
+
+        height: 75px;
+
+        border-width: 6px;
+    }
+
+
+    .verify-email-box h1 {
+        font-size: 28px;
+    }
+
+
+    .verify-email-box > p {
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    .verify-email-box input {
+        height: 52px;
+
+        font-size: 16px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .verify-email-box input::placeholder {
+        font-size: 12px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .verify-email-box button {
+        height: 52px;
+
+        font-size: 10px;
+
+        letter-spacing: 2.5px;
+    }
 }

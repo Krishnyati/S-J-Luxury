@@ -23,7 +23,7 @@
 
 
 /* =====================================================
-   PRODUCT IMAGE CONTAINER
+   PRODUCT IMAGE
 ===================================================== */
 
 .product-image {
@@ -37,10 +37,6 @@
 }
 
 
-/* =====================================================
-   PRODUCT IMAGE LINK
-===================================================== */
-
 .product-image-link {
     position: absolute;
 
@@ -51,10 +47,6 @@
     z-index: 1;
 }
 
-
-/* =====================================================
-   PRODUCT IMAGE
-===================================================== */
 
 .product-image-link img {
     width: 100%;
@@ -74,6 +66,90 @@
 
 .product-card:hover .product-image-link img {
     transform: scale(1.05);
+}
+
+
+/* =====================================================
+   FAVORITE HEART BUTTON
+===================================================== */
+
+.card-favorite-button {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #ddd;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    color: #181818;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* HEART HOVER */
+
+.card-favorite-button:hover {
+    transform: scale(1.08);
+
+    color: #a77b2b;
+
+    border-color: #a77b2b;
+
+    background: white;
+}
+
+
+/* ACTIVE HEART */
+
+.card-favorite-button.favorite-active {
+    color: #a77b2b;
+
+    border-color: #a77b2b;
+}
+
+
+/* ACTIVE HEART HOVER */
+
+.card-favorite-button.favorite-active:hover {
+    color: #8d6925;
+}
+
+
+/* FAVORITE LOADING */
+
+.card-favorite-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
 }
 
 
@@ -115,6 +191,8 @@
 .product-name-link h3 {
     margin: 0;
 
+    color: #181818;
+
     font-size: 17px;
 
     font-weight: 400;
@@ -124,6 +202,11 @@
 
 
 .product-name-link:hover {
+    color: #a77b2b;
+}
+
+
+.product-name-link:hover h3 {
     color: #a77b2b;
 }
 
@@ -144,6 +227,8 @@
 
 
 .price span {
+    color: #181818;
+
     font-weight: 600;
 
     font-size: 16px;
@@ -158,35 +243,180 @@
 
 
 /* =====================================================
-   VIEW PRODUCT BUTTON
+   ADD TO CART BUTTON
 ===================================================== */
 
-.view-product-button {
-    display: inline-block;
+.card-cart-button {
+    width: 100%;
 
-    margin-top: 8px;
+    margin-top: 18px;
+
+    padding: 13px 10px;
+
+    border: none;
+
+    background: #181818;
+
+    color: white;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.card-cart-button:hover {
+    background: #a77b2b;
+}
+
+
+.card-cart-button:disabled {
+    background: #aaa;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   CART QUANTITY CONTROL
+===================================================== */
+
+.card-quantity-control {
+    width: 100%;
+
+    height: 44px;
+
+    margin-top: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 1px solid #d4cfc5;
+
+    box-sizing: border-box;
+
+    background: white;
+}
+
+
+/* QUANTITY BUTTON */
+
+.card-quantity-control button {
+    width: 44px;
+
+    height: 42px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
 
     color: #181818;
 
-    font-size: 13px;
+    font-size: 20px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* QUANTITY BUTTON HOVER */
+
+.card-quantity-control button:hover {
+    background: #eeeae2;
+}
+
+
+/* QUANTITY BUTTON DISABLED */
+
+.card-quantity-control button:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* QUANTITY NUMBER */
+
+.card-quantity-control span {
+    flex: 1;
+
+    text-align: center;
+
+    color: #181818;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.product-card-message {
+    margin: 10px 0 0;
+
+    color: #a77b2b;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   VIEW PRODUCT
+===================================================== */
+
+.view-product-button {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 10px;
+
+    padding: 12px 10px;
+
+    background: #181818;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 11px;
 
     font-weight: 500;
 
     text-decoration: none;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 
     transition: 0.3s;
 }
 
 
 .view-product-button:hover {
-    color: #a77b2b;
+    background: #a77b2b;
+
+    color: white;
 }
 
 
 /* =====================================================
-   RESPONSIVE - TABLET
+   TABLET
 ===================================================== */
 
 @media (max-width: 900px) {
@@ -195,14 +425,28 @@
         height: 320px;
     }
 
+
     .product-info {
         padding: 18px;
+    }
+
+
+    .card-favorite-button {
+        top: 12px;
+
+        right: 12px;
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 24px;
     }
 }
 
 
 /* =====================================================
-   RESPONSIVE - MOBILE
+   MOBILE
 ===================================================== */
 
 @media (max-width: 600px) {
@@ -211,9 +455,11 @@
         height: 230px;
     }
 
+
     .product-info {
         padding: 16px;
     }
+
 
     .product-info > p {
         margin-bottom: 8px;
@@ -223,11 +469,13 @@
         letter-spacing: 2px;
     }
 
+
     .product-name-link h3 {
         font-size: 16px;
 
         line-height: 1.35;
     }
+
 
     .price {
         margin-top: 12px;
@@ -235,24 +483,69 @@
         gap: 8px;
     }
 
+
     .price span {
         font-size: 15px;
     }
+
 
     .price del {
         font-size: 12px;
     }
 
-    .view-product-button {
-        margin-top: 6px;
 
-        font-size: 12px;
+    /* ADD TO CART */
+
+    .card-cart-button {
+        margin-top: 14px;
+    }
+
+
+    /* QUANTITY */
+
+    .card-quantity-control {
+        height: 42px;
+
+        margin-top: 14px;
+    }
+
+
+    .card-quantity-control button {
+        width: 40px;
+
+        height: 40px;
+    }
+
+
+    /* HEART */
+
+    .card-favorite-button {
+        top: 10px;
+
+        right: 10px;
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 22px;
+    }
+
+
+    /* VIEW PRODUCT */
+
+    .view-product-button {
+        margin-top: 8px;
+
+        padding: 11px 10px;
+
+        font-size: 10px;
     }
 }
 
 
 /* =====================================================
-   RESPONSIVE - SMALL MOBILE
+   SMALL MOBILE
 ===================================================== */
 
 @media (max-width: 400px) {
@@ -261,19 +554,39 @@
         height: 210px;
     }
 
+
     .product-info {
         padding: 14px;
     }
+
 
     .product-name-link h3 {
         font-size: 15px;
     }
 
+
     .price span {
         font-size: 14px;
     }
 
+
+    .card-favorite-button {
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 21px;
+    }
+
+
+    .card-quantity-control button {
+        width: 36px;
+
+        height: 38px;
+    }
+
+
     .view-product-button {
-        font-size: 11px;
+        font-size: 10px;
     }
 }

@@ -1,209 +1,285 @@
-// Import React
-import React, { useState } from "react";
+// Import React hook
+import { useState } from "react";
 
-// Import Navigation
-import { useNavigate } from "react-router-dom";
+// Import navigation
+import { Link, useNavigate } from "react-router-dom";
 
-// Import Register CSS
+// Import CSS
 import "./Register.css";
 
-// Register Component
 function Register() {
 
-    // Navigation function
-    const navigate = useNavigate();
+  // ================= NAVIGATION =================
+  const navigate = useNavigate();
 
-    // Registration Form State
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
+  // ================= FORM DATA =================
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  // ================= PASSWORD VISIBILITY =================
+  const [showPassword, setShowPassword] = useState(false);
+
+  // ================= MESSAGE =================
+  const [message, setMessage] = useState("");
+
+  // ================= HANDLE INPUT =================
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    // Message State
-    const [message, setMessage] = useState("");
+  // ================= REGISTER =================
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Handle Input Changes
-    const handleChange = (e) => {
+    setMessage("");
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+    try {
 
-    };
+      const response = await fetch(
+        "http://localhost:5000/api/auth/register",
+        {
+          method: "POST",
 
-    // Handle Registration
-    const handleSubmit = async (e) => {
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        e.preventDefault();
-
-        try {
-
-            // Send Registration Request
-            const response = await fetch(
-                "http://localhost:5000/api/auth/register",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-
-                    body: JSON.stringify({
-                        name: formData.name,
-                        email: formData.email,
-                        phone: formData.phone,
-                        password: formData.password,
-                    }),
-                }
-            );
-
-            // Convert Response To JSON
-            const data = await response.json();
-
-            // Check Registration
-            if (response.ok) {
-
-                // Save Email For OTP Verification
-                localStorage.setItem(
-                    "verificationEmail",
-                    formData.email
-                );
-
-                // Show Success Message
-                setMessage(
-                    "Registration successful. OTP sent to your email."
-                );
-
-                // Go To OTP Verification Page
-                setTimeout(() => {
-                    navigate("/verify-email");
-                }, 1000);
-
-            } else {
-
-                // Show Backend Error
-                setMessage(
-                    data.message ||
-                    "Registration failed"
-                );
-
-            }
-
-        } catch (error) {
-
-            // Display Error In Console
-            console.error(
-                "Registration Error:",
-                error
-            );
-
-            // Show Connection Error
-            setMessage(
-                "Unable to connect to server"
-            );
-
+          body: JSON.stringify(formData),
         }
+      );
 
-    };
+      const data = await response.json();
 
-    // Register Page UI
-    return (
+      if (response.ok) {
 
-        <div className="register-page">
+        // Save email for OTP verification
+        localStorage.setItem(
+          "verificationEmail",
+          formData.email
+        );
 
-            <div className="register-box">
+        // Go to verification page
+        navigate("/verify-email");
 
-                {/* S&J Luxury Logo */}
+      } else {
 
-                <img
-                    src="/logo.jpeg"
-                    alt="S&J Luxury Logo"
-                    className="auth-logo"
-                />
+        setMessage(
+          data.message ||
+          "Registration Failed. Please try again."
+        );
 
-                {/* Register Heading */}
+      }
 
-                <h1>
-                    Create Account
-                </h1>
+    } catch (error) {
 
-                <p>
-                    Join S&J Luxury
-                </p>
+      console.error(
+        "Registration Error:",
+        error
+      );
 
-                {/* Registration Form */}
+      setMessage(
+        "Unable To Connect With Server. Please Try Again Later."
+      );
+    }
+  };
 
-                <form onSubmit={handleSubmit}>
+  return (
+    <div className="register-page">
 
-                    {/* Name */}
+      {/* ================= BACKGROUND ORBS ================= */}
 
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter Your Full Name Here"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
+      <div className="register-orb register-orb-one"></div>
 
-                    {/* Email */}
+      <div className="register-orb register-orb-two"></div>
 
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter Your Email Address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
 
-                    {/* Password */}
+      {/* ================= REGISTER CARD ================= */}
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter Your Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
+      <div className="register-scene">
 
-                    {/* Phone */}
+        <div className="register-card">
 
-                    <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Enter Your Phone Number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                    />
+          {/* ================= LOGO ================= */}
 
-                    {/* Create Account Button */}
+          <img
+            src="/logo.jpeg"
+            alt="S&J Luxury"
+            className="register-logo"
+          />
 
-                    <button type="submit">
-                        Create Account
-                    </button>
 
-                </form>
+          {/* ================= BRAND ================= */}
 
-                {/* Registration Message */}
+          <span className="register-brand">
+            S & J LUXURY
+          </span>
 
-                {message && (
-                    <p className="register-message">
-                        {message}
-                    </p>
-                )}
+
+          {/* ================= HEADING ================= */}
+
+          <h1>
+            CREATE ACCOUNT
+          </h1>
+
+
+          <p className="register-subtitle">
+            Join us and discover luxury that defines you
+          </p>
+
+
+          {/* ================= REGISTER FORM ================= */}
+
+          <form
+            className="register-form"
+            onSubmit={handleSubmit}
+          >
+
+            {/* ================= NAME ================= */}
+
+            <div className="register-field">
+
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Full Name
+              </label>
 
             </div>
 
+
+            {/* ================= EMAIL ================= */}
+
+            <div className="register-field">
+
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Email Address
+              </label>
+
+            </div>
+
+
+            {/* ================= PHONE ================= */}
+
+            <div className="register-field">
+
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Phone Number
+              </label>
+
+            </div>
+
+
+            {/* ================= PASSWORD ================= */}
+
+            <div className="register-field">
+
+              <input
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Password
+              </label>
+
+
+              {/* SHOW / HIDE */}
+
+              <button
+                type="button"
+                className="register-password-toggle"
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
+              >
+                {showPassword ? "HIDE" : "SHOW"}
+              </button>
+
+            </div>
+
+
+            {/* ================= REGISTER BUTTON ================= */}
+
+            <button
+              type="submit"
+              className="register-submit"
+            >
+              REGISTER
+            </button>
+
+          </form>
+
+
+          {/* ================= MESSAGE ================= */}
+
+          {message && (
+            <p className="register-message">
+              {message}
+            </p>
+          )}
+
+
+          {/* ================= LOGIN ================= */}
+
+          <p className="register-switch">
+
+            Already have an account?{" "}
+
+            <Link
+              to="/login"
+              className="register-switch-link"
+            >
+              Sign in
+            </Link>
+
+          </p>
+
         </div>
 
-    );
+      </div>
+
+    </div>
+  );
 }
 
-// Export Register Component
 export default Register;

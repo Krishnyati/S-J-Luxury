@@ -7,10 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 // Import Cart CSS
 import "./Cart.css";
 
+// Import Header
+import Header from "../components/Header";
+
 // Cart component
 function Cart() {
 
-    //Chekout Navigation
+    // Checkout Navigation
     const navigate = useNavigate();
 
     // Cart state
@@ -25,7 +28,9 @@ function Cart() {
     // Store product waiting for remove confirmation
     const [confirmRemoveProduct, setConfirmRemoveProduct] = useState(null);
 
-    // Fetch cart
+
+    // ================= FETCH CART =================
+
     const fetchCart = async () => {
 
         const token = localStorage.getItem("token");
@@ -43,6 +48,7 @@ function Cart() {
                 "http://localhost:5000/api/cart",
                 {
                     method: "GET",
+
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -53,8 +59,11 @@ function Cart() {
 
             // Check response
             if (response.ok) {
+
                 setCart(data.cart);
+
             } else {
+
                 setMessage(
                     data.message || "Unable to fetch cart"
                 );
@@ -74,12 +83,18 @@ function Cart() {
         }
     };
 
-    // Load cart when page opens
+
+    // ================= LOAD CART =================
+
     useEffect(() => {
+
         fetchCart();
+
     }, []);
 
-    // Calculate final product price
+
+    // ================= CALCULATE FINAL PRICE =================
+
     const calculateFinalPrice = (product) => {
 
         const price = Number(product.price);
@@ -91,7 +106,9 @@ function Cart() {
         return price - (price * discount) / 100;
     };
 
-    // Calculate item subtotal
+
+    // ================= CALCULATE ITEM SUBTOTAL =================
+
     const calculateSubtotal = (item) => {
 
         return (
@@ -100,7 +117,9 @@ function Cart() {
         );
     };
 
-    // Calculate cart total
+
+    // ================= CALCULATE CART TOTAL =================
+
     const calculateTotal = () => {
 
         if (!cart || !cart.items) {
@@ -109,16 +128,20 @@ function Cart() {
 
         return cart.items.reduce(
             (total, item) => {
+
                 return (
                     total +
                     calculateSubtotal(item)
                 );
+
             },
             0
         );
     };
 
-    // Handle decrease quantity
+
+    // ================= DECREASE QUANTITY =================
+
     const handleDecreaseQuantity = (item) => {
 
         // Decrease quantity if it is greater than 1
@@ -136,7 +159,9 @@ function Cart() {
         setConfirmRemoveProduct(item.product);
     };
 
-    // Update product quantity
+
+    // ================= UPDATE QUANTITY =================
+
     const updateQuantity = async (
         productId,
         quantity
@@ -201,7 +226,9 @@ function Cart() {
         }
     };
 
-    // Remove product from cart
+
+    // ================= REMOVE PRODUCT =================
+
     const removeItem = async (productId) => {
 
         const token =
@@ -267,7 +294,9 @@ function Cart() {
         }
     };
 
-    // Confirm product removal
+
+    // ================= CONFIRM REMOVE =================
+
     const handleConfirmRemove = async () => {
 
         // Check selected product
@@ -282,17 +311,22 @@ function Cart() {
 
         // Close popup after successful removal
         if (removed) {
+
             setConfirmRemoveProduct(null);
         }
     };
 
-    // Cancel product removal
+
+    // ================= CANCEL REMOVE =================
+
     const handleCancelRemove = () => {
 
         setConfirmRemoveProduct(null);
     };
 
-    // Clear cart
+
+    // ================= CLEAR CART =================
+
     const clearCart = async () => {
 
         const token =
@@ -347,39 +381,61 @@ function Cart() {
         }
     };
 
-    // Loading screen
+
+    // ================= LOADING =================
+
     if (loading) {
 
         return (
-            <div className="cart-page">
+            <>
+                {/* ================= HEADER ================= */}
 
-                <h2>
-                    Loading Cart...
-                </h2>
+                <Header />
 
-            </div>
+                {/* ================= LOADING ================= */}
+
+                <div className="cart-page">
+
+                    <h2>
+                        Loading Cart...
+                    </h2>
+
+                </div>
+            </>
         );
     }
 
-    // Login required
+
+    // ================= LOGIN REQUIRED =================
+
     if (message && !cart) {
 
         return (
-            <div className="cart-page">
+            <>
+                {/* ================= HEADER ================= */}
 
-                <h2>
-                    {message}
-                </h2>
+                <Header />
 
-                <Link to="/login">
-                    Login
-                </Link>
+                {/* ================= LOGIN REQUIRED ================= */}
 
-            </div>
+                <div className="cart-page">
+
+                    <h2>
+                        {message}
+                    </h2>
+
+                    <Link to="/login">
+                        Login
+                    </Link>
+
+                </div>
+            </>
         );
     }
 
-    // Empty cart
+
+    // ================= EMPTY CART =================
+
     if (
         !cart ||
         !cart.items ||
@@ -387,330 +443,378 @@ function Cart() {
     ) {
 
         return (
-            <div className="cart-page empty-cart">
+            <>
+                {/* ================= HEADER ================= */}
 
-                <h1>
-                    Your Cart
-                </h1>
+                <Header />
 
-                <p>
-                    Your cart is currently empty.
-                </p>
+                {/* ================= EMPTY CART ================= */}
 
-                <Link to="/">
-                    Continue Shopping
-                </Link>
+                <div className="cart-page empty-cart">
 
-            </div>
+                    <h1>
+                        Your Cart
+                    </h1>
+
+                    <p>
+                        Your cart is currently empty.
+                    </p>
+
+                    <Link to="/">
+                        Continue Shopping
+                    </Link>
+
+                </div>
+            </>
         );
     }
 
-    // Cart page
+
+    // ================= CART PAGE =================
+
     return (
-        <div className="cart-page">
+        <>
+            {/* ================= HEADER ================= */}
 
-            {/* CART HEADER */}
+            <Header />
 
-            <div className="cart-header">
+            {/* ================= CART PAGE ================= */}
 
-                <p>
-                    S&J LUXURY
-                </p>
+            <div className="cart-page">
 
-                <h1>
-                    Your Shopping Cart
-                </h1>
+                {/* ================= CART HEADER ================= */}
 
-            </div>
+                <div className="cart-header">
 
-            {/* CART MESSAGE */}
+                    <p>
+                        S&J LUXURY
+                    </p>
 
-            {message && (
-                <p className="cart-message">
-                    {message}
-                </p>
-            )}
+                    <h1>
+                        Your Shopping Cart
+                    </h1>
 
-            {/* CART CONTAINER */}
+                </div>
 
-            <div className="cart-container">
 
-                {/* CART ITEMS */}
+                {/* ================= CART MESSAGE ================= */}
 
-                <div className="cart-items">
+                {message && (
 
-                    {cart.items.map((item) => {
+                    <p className="cart-message">
+                        {message}
+                    </p>
 
-                        const product =
-                            item.product;
+                )}
 
-                        const finalPrice =
-                            calculateFinalPrice(
-                                product
-                            );
 
-                        const subtotal =
-                            calculateSubtotal(
-                                item
-                            );
+                {/* ================= CART CONTAINER ================= */}
 
-                        return (
-                            <div
-                                className="cart-item"
-                                key={item._id}
-                            >
+                <div className="cart-container">
 
-                                {/* PRODUCT IMAGE */}
 
-                                <div className="cart-product-image">
+                    {/* ================= CART ITEMS ================= */}
 
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                    />
+                    <div className="cart-items">
 
-                                </div>
+                        {cart.items.map((item) => {
 
-                                {/* PRODUCT INFORMATION */}
+                            const product =
+                                item.product;
 
-                                <div className="cart-product-info">
+                            const finalPrice =
+                                calculateFinalPrice(
+                                    product
+                                );
 
-                                    <p>
-                                        {product.category}
-                                    </p>
+                            const subtotal =
+                                calculateSubtotal(
+                                    item
+                                );
 
-                                    <h2>
-                                        {product.name}
-                                    </h2>
+                            return (
 
-                                    <span>
-                                        ₹
-                                        {finalPrice.toLocaleString()}
-                                    </span>
+                                <div
+                                    className="cart-item"
+                                    key={item._id}
+                                >
 
-                                </div>
 
-                                {/* QUANTITY CONTROL */}
+                                    {/* PRODUCT IMAGE */}
 
-                                <div className="quantity-control">
+                                    <div className="cart-product-image">
 
-                                    {/* MINUS BUTTON */}
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                        />
+
+                                    </div>
+
+
+                                    {/* PRODUCT INFORMATION */}
+
+                                    <div className="cart-product-info">
+
+                                        <p>
+                                            {product.category}
+                                        </p>
+
+                                        <h2>
+                                            {product.name}
+                                        </h2>
+
+                                        <span>
+                                            ₹
+                                            {finalPrice.toLocaleString()}
+                                        </span>
+
+                                    </div>
+
+
+                                    {/* QUANTITY CONTROL */}
+
+                                    <div className="quantity-control">
+
+                                        {/* MINUS BUTTON */}
+
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                handleDecreaseQuantity(
+                                                    item
+                                                )
+                                            }
+                                        >
+                                            −
+                                        </button>
+
+
+                                        {/* QUANTITY */}
+
+                                        <span>
+                                            {item.quantity}
+                                        </span>
+
+
+                                        {/* PLUS BUTTON */}
+
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                updateQuantity(
+                                                    product._id,
+                                                    item.quantity + 1
+                                                )
+                                            }
+                                        >
+                                            +
+                                        </button>
+
+                                    </div>
+
+
+                                    {/* SUBTOTAL */}
+
+                                    <div className="cart-subtotal">
+
+                                        <p>
+                                            Subtotal
+                                        </p>
+
+                                        <strong>
+                                            ₹
+                                            {subtotal.toLocaleString()}
+                                        </strong>
+
+                                    </div>
+
+
+                                    {/* REMOVE BUTTON */}
 
                                     <button
                                         type="button"
+                                        className="remove-button"
                                         onClick={() =>
-                                            handleDecreaseQuantity(
-                                                item
+                                            removeItem(
+                                                product._id
                                             )
                                         }
                                     >
-                                        −
-                                    </button>
-
-                                    {/* QUANTITY */}
-
-                                    <span>
-                                        {item.quantity}
-                                    </span>
-
-                                    {/* PLUS BUTTON */}
-
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            updateQuantity(
-                                                product._id,
-                                                item.quantity + 1
-                                            )
-                                        }
-                                    >
-                                        +
+                                        Remove
                                     </button>
 
                                 </div>
+                            );
+                        })}
 
-                                {/* SUBTOTAL */}
 
-                                <div className="cart-subtotal">
+                        {/* ================= CLEAR CART ================= */}
 
-                                    <p>
-                                        Subtotal
-                                    </p>
+                        <button
+                            type="button"
+                            className="clear-cart-button"
+                            onClick={clearCart}
+                        >
+                            Clear Cart
+                        </button>
 
-                                    <strong>
-                                        ₹
-                                        {subtotal.toLocaleString()}
-                                    </strong>
+                    </div>
 
-                                </div>
+
+                    {/* ================= CART SUMMARY ================= */}
+
+                    <div className="cart-summary">
+
+                        <p>
+                            ORDER SUMMARY
+                        </p>
+
+                        <h2>
+                            Cart Total
+                        </h2>
+
+
+                        {/* ITEMS COUNT */}
+
+                        <div className="summary-row">
+
+                            <span>
+                                Items
+                            </span>
+
+                            <span>
+                                {cart.items.reduce(
+                                    (total, item) =>
+                                        total +
+                                        item.quantity,
+                                    0
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        {/* TOTAL */}
+
+                        <div className="summary-row total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong>
+                                ₹
+                                {calculateTotal().toLocaleString()}
+                            </strong>
+
+                        </div>
+
+
+                        {/* CHECKOUT */}
+
+                        <button
+                            type="button"
+                            className="checkout-button"
+                            onClick={() =>
+                                navigate("/checkout")
+                            }
+                        >
+                            Proceed to Checkout
+                        </button>
+
+
+                        {/* CONTINUE SHOPPING */}
+
+                        <Link
+                            to="/"
+                            className="continue-shopping"
+                        >
+                            Continue Shopping
+                        </Link>
+
+                    </div>
+
+                </div>
+
+
+                {/* ================= REMOVE CONFIRMATION POPUP ================= */}
+
+                {confirmRemoveProduct && (
+
+                    <div className="remove-confirm-overlay">
+
+                        {/* CONFIRMATION BOX */}
+
+                        <div className="remove-confirm-box">
+
+                            {/* POPUP TITLE */}
+
+                            <p className="remove-confirm-label">
+                                S&J LUXURY
+                            </p>
+
+                            <h2>
+                                Remove Product?
+                            </h2>
+
+
+                            {/* POPUP MESSAGE */}
+
+                            <p className="remove-confirm-message">
+
+                                Are you sure you want to remove{" "}
+
+                                <strong>
+                                    {confirmRemoveProduct.name}
+                                </strong>
+
+                                {" "}from your cart?
+
+                            </p>
+
+
+                            {/* POPUP BUTTONS */}
+
+                            <div className="remove-confirm-actions">
+
+                                {/* CANCEL BUTTON */}
+
+                                <button
+                                    type="button"
+                                    className="cancel-remove-button"
+                                    onClick={
+                                        handleCancelRemove
+                                    }
+                                >
+                                    CANCEL
+                                </button>
+
 
                                 {/* REMOVE BUTTON */}
 
                                 <button
                                     type="button"
-                                    className="remove-button"
-                                    onClick={() =>
-                                        removeItem(
-                                            product._id
-                                        )
+                                    className="confirm-remove-button"
+                                    onClick={
+                                        handleConfirmRemove
                                     }
                                 >
-                                    Remove
+                                    REMOVE
                                 </button>
 
                             </div>
-                        );
-                    })}
-
-                    {/* CLEAR CART */}
-
-                    <button
-                        type="button"
-                        className="clear-cart-button"
-                        onClick={clearCart}
-                    >
-                        Clear Cart
-                    </button>
-
-                </div>
-
-                {/* CART SUMMARY */}
-
-                <div className="cart-summary">
-
-                    <p>
-                        ORDER SUMMARY
-                    </p>
-
-                    <h2>
-                        Cart Total
-                    </h2>
-
-                    {/* ITEMS COUNT */}
-
-                    <div className="summary-row">
-
-                        <span>
-                            Items
-                        </span>
-
-                        <span>
-                            {cart.items.reduce(
-                                (total, item) =>
-                                    total +
-                                    item.quantity,
-                                0
-                            )}
-                        </span>
-
-                    </div>
-
-                    {/* TOTAL */}
-
-                    <div className="summary-row total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong>
-                            ₹
-                            {calculateTotal().toLocaleString()}
-                        </strong>
-
-                    </div>
-
-                    {/* CHECKOUT */}
-
-                    <button
-                        type="button"
-                        className="checkout-button"
-                        onClick={() => navigate("/checkout")}
-                    >
-                        Proceed to Checkout
-                    </button>
-
-                    {/* CONTINUE SHOPPING */}
-
-                    <Link
-                        to="/"
-                        className="continue-shopping"
-                    >
-                        Continue Shopping
-                    </Link>
-
-                </div>
-
-            </div>
-
-            {/* REMOVE CONFIRMATION POPUP */}
-
-            {confirmRemoveProduct && (
-
-                <div className="remove-confirm-overlay">
-
-                    {/* CONFIRMATION BOX */}
-
-                    <div className="remove-confirm-box">
-
-                        {/* POPUP TITLE */}
-
-                        <p className="remove-confirm-label">
-                            S&J LUXURY
-                        </p>
-
-                        <h2>
-                            Remove Product?
-                        </h2>
-
-                        {/* POPUP MESSAGE */}
-
-                        <p className="remove-confirm-message">
-
-                            Are you sure you want to remove{" "}
-
-                            <strong>
-                                {confirmRemoveProduct.name}
-                            </strong>
-
-                            {" "}from your cart?
-
-                        </p>
-
-                        {/* POPUP BUTTONS */}
-
-                        <div className="remove-confirm-actions">
-
-                            {/* CANCEL BUTTON */}
-
-                            <button
-                                type="button"
-                                className="cancel-remove-button"
-                                onClick={handleCancelRemove}
-                            >
-                                CANCEL
-                            </button>
-
-                            {/* REMOVE BUTTON */}
-
-                            <button
-                                type="button"
-                                className="confirm-remove-button"
-                                onClick={handleConfirmRemove}
-                            >
-                                REMOVE
-                            </button>
 
                         </div>
 
                     </div>
+                )}
 
-                </div>
-            )}
-
-        </div>
+            </div>
+        </>
     );
 }
+
 
 // Export Cart component
 export default Cart;

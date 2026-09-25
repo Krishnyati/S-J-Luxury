@@ -1,9 +1,14 @@
+/* ================= PRODUCT DETAILS PAGE ================= */
+
 .product-details-page {
   min-height: 100vh;
   padding: 80px 7%;
   background: #f8f6f1;
   color: #1c1c1c;
 }
+
+
+/* ================= CONTAINER ================= */
 
 .product-details-container {
   max-width: 1200px;
@@ -15,7 +20,8 @@
   align-items: center;
 }
 
-/* IMAGE */
+
+/* ================= IMAGE ================= */
 
 .product-details-image {
   width: 100%;
@@ -29,17 +35,20 @@
   overflow: hidden;
 }
 
+
 .product-details-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* PRODUCT INFORMATION */
+
+/* ================= PRODUCT INFORMATION ================= */
 
 .product-details-info {
   padding: 20px 0;
 }
+
 
 .product-category {
   margin-bottom: 15px;
@@ -51,6 +60,7 @@
   text-transform: uppercase;
 }
 
+
 .product-details-info h1 {
   margin: 0 0 20px;
 
@@ -61,7 +71,8 @@
   line-height: 1.1;
 }
 
-/* PRICE */
+
+/* ================= PRICE ================= */
 
 .product-details-price {
   display: flex;
@@ -71,6 +82,7 @@
   margin-bottom: 8px;
 }
 
+
 .product-details-price span {
   color: #171717;
 
@@ -78,11 +90,13 @@
   font-weight: 600;
 }
 
+
 .product-details-price del {
   color: #999;
 
   font-size: 16px;
 }
+
 
 .discount-text {
   margin: 5px 0 25px;
@@ -95,7 +109,8 @@
   letter-spacing: 1px;
 }
 
-/* DIVIDER */
+
+/* ================= DIVIDER ================= */
 
 .product-divider {
   width: 100%;
@@ -106,7 +121,8 @@
   background: #ded9cf;
 }
 
-/* DESCRIPTION */
+
+/* ================= DESCRIPTION ================= */
 
 .product-description {
   max-width: 520px;
@@ -117,7 +133,8 @@
   line-height: 1.8;
 }
 
-/* STOCK */
+
+/* ================= STOCK ================= */
 
 .stock-info {
   margin: 25px 0;
@@ -126,11 +143,13 @@
   color: #555;
 }
 
-/* QUANTITY */
+
+/* ================= QUANTITY ================= */
 
 .quantity-section {
   margin-bottom: 25px;
 }
+
 
 .quantity-section > p {
   margin-bottom: 10px;
@@ -142,6 +161,7 @@
   letter-spacing: 2px;
 }
 
+
 .quantity-control {
   width: fit-content;
 
@@ -150,6 +170,7 @@
 
   border: 1px solid #d4cfc5;
 }
+
 
 .quantity-control button {
   width: 42px;
@@ -164,14 +185,17 @@
   cursor: pointer;
 }
 
+
 .quantity-control button:hover {
   background: #eeeae2;
 }
+
 
 .quantity-control button:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
+
 
 .quantity-control span {
   width: 45px;
@@ -181,7 +205,8 @@
   font-size: 14px;
 }
 
-/* ADD TO CART */
+
+/* ================= ADD TO CART ================= */
 
 .details-cart-button {
   width: 100%;
@@ -206,16 +231,63 @@
   transition: 0.3s;
 }
 
+
 .details-cart-button:hover {
   background: #b08a45;
 }
+
 
 .details-cart-button:disabled {
   background: #aaa;
   cursor: not-allowed;
 }
 
-/* MESSAGE */
+
+/* ================= ADD TO FAVORITES ================= */
+
+.details-favorite-button {
+  width: 100%;
+  max-width: 520px;
+
+  padding: 16px 25px;
+
+  margin-top: 12px;
+
+  border: 1px solid #171717;
+
+  background: transparent;
+
+  color: #171717;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+
+.details-favorite-button:hover {
+  background: #b08a45;
+
+  color: white;
+
+  border-color: #b08a45;
+}
+
+
+.details-favorite-button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* ================= MESSAGE ================= */
 
 .details-message {
   margin-top: 15px;
@@ -225,7 +297,8 @@
   font-size: 13px;
 }
 
-/* BACK */
+
+/* ================= BACK ================= */
 
 .back-shop-link {
   display: inline-block;
@@ -241,11 +314,13 @@
   text-decoration: none;
 }
 
+
 .back-shop-link:hover {
   color: #b08a45;
 }
 
-/* LOADING / ERROR */
+
+/* ================= LOADING / ERROR ================= */
 
 .loading-page,
 .error-page {
@@ -260,6 +335,7 @@
   text-align: center;
 }
 
+
 .error-page a {
   margin-top: 20px;
 
@@ -268,7 +344,8 @@
   text-decoration: none;
 }
 
-/* MOBILE */
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 900px) {
 
@@ -276,15 +353,18 @@
     padding: 50px 25px;
   }
 
+
   .product-details-container {
     grid-template-columns: 1fr;
 
     gap: 40px;
   }
 
+
   .product-details-image {
     height: 450px;
   }
+
 
   .product-details-info h1 {
     font-size: 40px;
@@ -292,19 +372,25 @@
 
 }
 
+
+/* ================= SMALL MOBILE ================= */
+
 @media (max-width: 500px) {
 
   .product-details-page {
     padding: 35px 18px;
   }
 
+
   .product-details-image {
     height: 350px;
   }
 
+
   .product-details-info h1 {
     font-size: 32px;
   }
+
 
   .product-details-price span {
     font-size: 21px;

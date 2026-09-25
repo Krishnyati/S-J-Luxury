@@ -10,6 +10,14 @@ const jwt = require("jsonwebtoken");
 // Import Nodemailer
 const nodemailer = require("nodemailer");
 
+// Import Google Authentication
+const { OAuth2Client } = require("google-auth-library");
+
+// Create Google OAuth Client
+const googleClient = new OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID
+);
+
 // Create Email Transporter
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -18,6 +26,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     }
 });
+
 
 // Generate Email OTP of 6 Digits
 const generateOTP = () => {
@@ -59,6 +68,7 @@ const registerUser = async (req, res) => {
             email
         });
 
+
         if (existingUser) {
 
             return res.status(400).json({
@@ -72,6 +82,7 @@ const registerUser = async (req, res) => {
         const existingPhone = await User.findOne({
             phone
         });
+
 
         if (existingPhone) {
 
@@ -368,6 +379,19 @@ const loginUser = async (req, res) => {
         }
 
 
+        // Check If User Uses Google Login
+        if (!user.password) {
+
+            return res.status(400).json({
+
+                message:
+                    "This account uses Google Login. Please login with Google."
+
+            });
+
+        }
+
+
         // Compare Password
         const isPasswordCorrect =
             await bcrypt.compare(
@@ -418,6 +442,12 @@ const loginUser = async (req, res) => {
         });
 
     } catch (error) {
+
+        // Display Login Error
+        console.error(
+            "Login User Error:",
+            error
+        );
 
         res.status(500).json({
 
@@ -623,18 +653,185 @@ const updateProfile = async (req, res) => {
 };
 
 
+// ================= GOOGLE LOGIN =================
+
+const googleLogin = async (req, res) => {
+
+    try {
+
+        // Get Google Credential From Request
+        const {
+            credential
+        } = req.body;
+
+
+        // Check Credential
+        if (!credential) {
+
+            return res.status(400).json({
+
+                message:
+                    "Google Credential is Required"
+
+            });
+
+        }
+
+
+        // Verify Google ID Token
+        const ticket = await googleClient.verifyIdToken({
+
+            idToken: credential,
+
+            audience:
+                process.env.GOOGLE_CLIENT_ID
+
+        });
+
+
+        // Get Google User Information
+        const payload = ticket.getPayload();
+
+
+        // Get Important Google Details
+        const {
+            sub,
+            email,
+            name,
+            email_verified
+        } = payload;
+
+
+        // Check Google Email Verification
+        if (!email_verified) {
+
+            return res.status(400).json({
+
+                message:
+                    "Google Email is Not Verified"
+
+            });
+
+        }
+
+
+        // Find User Using Google ID
+        let user = await User.findOne({
+
+            googleId: sub
+
+        });
+
+
+        // If User Is Not Found By Google ID
+        if (!user) {
+
+            // Check Whether Email Already Exists
+            user = await User.findOne({
+
+                email: email
+
+            });
+
+
+            // If Email User Exists
+            if (user) {
+
+                // Connect Google Account
+                user.googleId = sub;
+
+                // Google Already Verified This Email
+                user.isVerified = true;
+
+                await user.save();
+
+            }
+
+            // If New Google User
+            else {
+
+                user = await User.create({
+
+                    name:
+                        name || "Google User",
+
+                    email:
+                        email,
+
+                    googleId:
+                        sub,
+
+                    isVerified:
+                        true
+
+                });
+
+            }
+
+        }
+
+
+        // Create Our Application JWT
+        const token = jwt.sign(
+
+            {
+                userId: user._id
+            },
+
+            process.env.JWT_SECRET,
+
+            {
+                expiresIn: "7d"
+            }
+
+        );
+
+
+        // Send Login Response
+        res.status(200).json({
+
+            message:
+                "Google Login Successfully",
+
+            token,
+
+            name:
+                user.name,
+
+            email:
+                user.email
+
+        });
+
+    } catch (error) {
+
+        // Display Google Login Error
+        console.error(
+            "Google Login Error:",
+            error
+        );
+
+
+        // Send Error Response
+        res.status(500).json({
+
+            message:
+                "Unable To Login With Your Google Account. Please Try Again Later."
+
+        });
+
+    }
+
+};
+
+
 // ================= EXPORT =================
 
 module.exports = {
-
     registerUser,
-
     verifyEmail,
-
     loginUser,
-
     getProfile,
-
-    updateProfile
-
+    updateProfile,
+    googleLogin
 };

@@ -1,201 +1,304 @@
-import { useState } from "react";
+// Import React hooks
+import { useEffect, useRef, useState } from "react";
+
+// Import navigation tools
 import { Link, useNavigate } from "react-router-dom";
 
+// Import CSS
 import "./Login.css";
 
-
 function Login() {
+  // ================= NAVIGATION =================
+  const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+  // ================= FORM DATA =================
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // ================= PASSWORD VISIBILITY =================
+  const [showPassword, setShowPassword] = useState(false);
+
+  // ================= MESSAGE =================
+  const [message, setMessage] = useState("");
+
+  // ================= GOOGLE LOGIN =================
+  const googleButtonRef = useRef(null);
+
+  // ================= HANDLE INPUT =================
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const [message, setMessage] = useState("");
+  // ================= NORMAL LOGIN =================
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const navigate = useNavigate();
+    setMessage("");
 
-
-    const handleChange = (e) => {
-
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-
-    };
-
-
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-
-        setMessage("");
-
-        try {
-
-            const response = await fetch(
-                "http://localhost:5000/api/auth/login",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(formData)
-                }
-            );
-
-            const data = await response.json();
-
-
-            if (response.ok) {
-
-                // Save current login token
-                localStorage.setItem(
-                    "token",
-                    data.token
-                );
-
-                /*
-                   Remove the previous user's saved details.
-                   This prevents Bhargav's name from appearing
-                   when another user logs in.
-                */
-                localStorage.removeItem("user");
-                localStorage.removeItem("userName");
-
-
-                // Get the current user's real display name
-                const displayName =
-                    data.user?.displayName ||
-                    data.user?.fullName ||
-                    data.user?.name ||
-                    data.displayName ||
-                    data.fullName ||
-                    data.name ||
-                    data.username ||
-                    formData.email.split("@")[0];
-
-
-                // Save current logged-in user for Header.jsx
-                const currentUser = {
-                    ...(data.user || {}),
-                    displayName: displayName,
-                    name: displayName,
-                    email:
-                        data.user?.email ||
-                        data.email ||
-                        formData.email
-                };
-
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(currentUser)
-                );
-
-
-                setMessage("Login successful.");
-
-                setTimeout(() => {
-                    navigate("/");
-                }, 500);
-
-            } else {
-
-                setMessage(
-                    data.message ||
-                    "Invalid email or password."
-                );
-
-            }
-
-        } catch (error) {
-
-            console.error("Login Error:", error);
-
-            setMessage(
-                "Unable to connect with server."
-            );
-
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
+      );
 
-    };
+      const data = await response.json();
 
+      if (response.ok) {
+        // Save token
+        localStorage.setItem("token", data.token);
 
-    return (
+        // Create current user object
+        const currentUser = {
+          id: data.user?._id || data.user?.id,
+          name: data.user?.name,
+          email: data.user?.email,
+          phone: data.user?.phone,
+        };
 
-        <div className="login-page">
+        // Save user
+        localStorage.setItem(
+          "user",
+          JSON.stringify(currentUser)
+        );
 
-            <div className="login-box">
+        // Go to home page
+        navigate("/");
+      } else {
+        setMessage(
+          data.message || "Unable to Login. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
 
-                <img
-                    src="/logo.jpeg"
-                    alt="S&J Luxury Logo"
-                    className="auth-logo"
-                />
+      setMessage(
+        "Unable To Connect With Server. Please Try Again Later."
+      );
+    }
+  };
 
-                <h1>
-                    Welcome Back
-                </h1>
+  // ================= GOOGLE LOGIN =================
+  const handleGoogleLogin = async (response) => {
+    try {
+      setMessage("");
 
-                <p>
-                    Login to S&J Luxury
-                </p>
+      const result = await fetch(
+        "http://localhost:5000/api/auth/google-login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            credential: response.credential,
+          }),
+        }
+      );
 
-                <form onSubmit={handleSubmit}>
+      const data = await result.json();
 
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter Email Address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
+      if (result.ok) {
+        // Save token
+        localStorage.setItem("token", data.token);
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
+        // Create current user
+        const currentUser = {
+          id: data.user?._id || data.user?.id,
+          name: data.user?.name,
+          email: data.user?.email,
+          phone: data.user?.phone,
+        };
 
-                    <button type="submit">
-                        Login
-                    </button>
+        // Save user
+        localStorage.setItem(
+          "user",
+          JSON.stringify(currentUser)
+        );
 
-                </form>
+        // Go to home page
+        navigate("/");
+      } else {
+        setMessage(
+          data.message || "Google Login Failed."
+        );
+      }
+    } catch (error) {
+      console.error("Google Login Error:", error);
 
+      setMessage(
+        "Unable To Connect With Server."
+      );
+    }
+  };
 
-                {message && (
+  // ================= GOOGLE BUTTON =================
+  useEffect(() => {
+    if (
+      window.google &&
+      googleButtonRef.current &&
+      import.meta.env.VITE_GOOGLE_CLIENT_ID
+    ) {
+      window.google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        callback: handleGoogleLogin,
+      });
 
-                    <p className="login-message">
-                        {message}
-                    </p>
+      window.google.accounts.id.renderButton(
+        googleButtonRef.current,
+        {
+          theme: "outline",
+          size: "large",
+          width: 320,
+          text: "continue_with",
+          shape: "pill",
+        }
+      );
+    }
+  }, []);
 
-                )}
+  return (
+    <div className="login-page">
 
+      {/* ================= BACKGROUND ORBS ================= */}
+      <div className="login-orb login-orb-one"></div>
+      <div className="login-orb login-orb-two"></div>
 
-                <p className="register-link">
+      {/* ================= LOGIN CARD ================= */}
+      <div className="login-scene">
 
-                    Don't Have an Account?{" "}
+        <div className="login-card">
 
-                    <Link to="/register">
-                        Create Your Account
-                    </Link>
+          {/* ================= LOGO ================= */}
+          <img
+            src="/logo.jpeg"
+            alt="S&J Luxury"
+            className="login-logo"
+          />
 
-                </p>
+          {/* ================= BRAND ================= */}
+          <span className="login-brand">
+            S & J LUXURY
+          </span>
+
+          {/* ================= HEADING ================= */}
+          <h1>WELCOME BACK</h1>
+
+          <p className="login-subtitle">
+            Sign in to continue to your account
+          </p>
+
+          {/* ================= LOGIN FORM ================= */}
+          <form
+            className="login-form"
+            onSubmit={handleSubmit}
+          >
+
+            {/* EMAIL */}
+            <div className="login-field">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Email Address
+              </label>
+            </div>
+
+            {/* PASSWORD */}
+            <div className="login-field password-field">
+
+              <input
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+
+              <label>
+                Password
+              </label>
+
+              {/* SHOW / HIDE PASSWORD */}
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
+              >
+                {showPassword ? "HIDE" : "SHOW"}
+              </button>
 
             </div>
 
+            {/* LOGIN BUTTON */}
+            <button
+              type="submit"
+              className="login-submit"
+            >
+              LOGIN
+            </button>
+
+          </form>
+
+          {/* ================= OR ================= */}
+          <div className="login-divider">
+            <span>OR</span>
+          </div>
+
+          {/* ================= GOOGLE LOGIN ================= */}
+          <div
+            ref={googleButtonRef}
+            className="google-login"
+          ></div>
+
+          {/* ================= MESSAGE ================= */}
+          {message && (
+            <p className="login-message">
+              {message}
+            </p>
+          )}
+
+          {/* ================= REGISTER ================= */}
+          <p className="login-switch">
+            Don't have an account?{" "}
+
+            <Link
+              to="/register"
+              className="login-switch-link"
+            >
+              Create one
+            </Link>
+          </p>
+
         </div>
 
-    );
+      </div>
 
+    </div>
+  );
 }
 
 export default Login;
